@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" FontFamily="accaid"
+             xmlns:p="clr-namespace:VB_WPF_MVVM.Localization;assembly=VB_WPF_MVVM.Localization"
+             xmlns:Prism="http://www.codeplex.com/prism"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:common="clr-namespace:VB_WPF_MVVM.Common;assembly=VB_WPF_MVVM.Common"
+             Prism:ViewModelLocator.AutoWireViewModel="True" 
+             d:DesignHeight="700" d:DesignWidth="1300" BorderThickness="0" BorderBrush="Blue">
+    <Grid Visibility="{Binding IsValid,Converter={StaticResource InverseBoolToVisConverter}}">
+        <Grid Width="500" Height="500">
+            <!--Center-->
+        </Grid>
+    </Grid>
+</UserControl>
+

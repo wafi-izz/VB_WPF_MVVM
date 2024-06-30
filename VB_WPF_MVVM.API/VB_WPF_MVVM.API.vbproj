@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <RootNamespace>VB_WPF_MVVM.API</RootNamespace>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Platforms>AnyCPU;x64;x86</Platforms>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VB_WPF_MVVM.API.Models\VB_WPF_MVVM.API.Models.vbproj" />
+    <ProjectReference Include="..\VB_WPF_MVVM.Common\VB_WPF_MVVM.Common.vbproj" />
+    <ProjectReference Include="..\VB_WPF_MVVM.Localization\VB_WPF_MVVM.Localization.vbproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Almagal.Common">
+      <HintPath>bin\Debug\netstandard2.0\Almagal.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Almagal.Extentions">
+      <HintPath>bin\Debug\netstandard2.0\Almagal.Extentions.dll</HintPath>
+    </Reference>
+    <Reference Include="DataBaseManager">
+      <HintPath>bin\Debug\netstandard2.0\DataBaseManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Common">
+      <HintPath>bin\Debug\netstandard2.0\System.Data.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Data.DataSetExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SqlServerCe">
+      <HintPath>bin\Debug\netstandard2.0\System.Data.SqlServerCe.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Import Include="VB_WPF_MVVM.API.My" />
+    <Import Include="VB_WPF_MVVM.Common" />
+    <Import Include="System.Data.Common" />
+    <Import Include="System.Data.SqlServerCe" />
+  </ItemGroup>
+
+</Project>
