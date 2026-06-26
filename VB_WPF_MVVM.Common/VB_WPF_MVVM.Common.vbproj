@@ -97,9 +97,6 @@
     <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net46\CommonServiceLocator.dll</HintPath>
     </Reference>
-    <Reference Include="DataBaseManager">
-      <HintPath>F:\AhmedHisham\Projects\RetirrmentSystem\HospitalManagementSystem.API\bin\Debug\DataBaseManager.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -166,18 +163,14 @@
     <Compile Include="Helper\BindableBase.vb" />
     <Compile Include="Helper\BindableSelectedItemBehavior.vb" />
     <Compile Include="Helper\CommonModule.vb" />
-    <Compile Include="Helper\ConnectionManager.vb" />
     <Compile Include="Helper\Converters.vb" />
-    <Compile Include="Helper\DataException.vb" />
     <Compile Include="Helper\DragDropBehavior.vb" />
     <Compile Include="Helper\LoginInfo.vb" />
     <Compile Include="Helper\mdlFunctions.vb" />
     <Compile Include="Helper\MessageCommand.vb" />
-    <Compile Include="Helper\NotStoreProcedureParameterAttribute.vb" />
     <Compile Include="Helper\PupSubEvents.vb" />
     <Compile Include="Helper\RelayCommand.vb" />
     <Compile Include="Helper\ShardData.vb" />
-    <Compile Include="Helper\TableName.vb" />
     <Compile Include="Helper\TranslationsMessage.vb" />
     <Compile Include="Helper\UserControl1.xaml.vb" />
     <Compile Include="Helper\WaterMarkTextHelper.vb" />

@@ -127,9 +127,10 @@
                                 BorderThickness="0"
                                 BorderBrush="{DynamicResource PrimaryHueDarkBrush}">
                             <Border.Background>
-                                <LinearGradientBrush EndPoint="0.5,1"  StartPoint="0.5,0">
-                                    <GradientStop Color="#FF2778BB"/>
-                                    <GradientStop Color="#FF1EDFFF" Offset="1"/>
+                                <LinearGradientBrush EndPoint="1,1"  StartPoint="0,0">
+                                    <GradientStop Color="#FF173E63" Offset="0"/>
+                                    <GradientStop Color="#FF11304F" Offset="0.5"/>
+                                    <GradientStop Color="#FF0C2238" Offset="1"/>
                                 </LinearGradientBrush>
                             </Border.Background>
                             <Grid>

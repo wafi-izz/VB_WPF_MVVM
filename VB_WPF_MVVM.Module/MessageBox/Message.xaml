@@ -1,50 +1,110 @@
-﻿<Window x:Class="Message"
+<Window x:Class="Message"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Archive.Module" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:VB_WPF_MVVM.Module"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-
-         Title="Message" Height="200" Width="250"
+        Title="Message" Width="330" MinHeight="180" SizeToContent="Height"
         WindowStyle="None" WindowState="Normal" WindowStartupLocation="CenterScreen"
-        AllowsTransparency="True" Activated="Window_Activated" KeyDown="Window_KeyDown"  >
+        AllowsTransparency="True" Background="Transparent"
+        Activated="Window_Activated" KeyDown="Window_KeyDown">
 
-    <Window.Background>
-        <SolidColorBrush Opacity="0" Color="White"/>
-    </Window.Background>
+    <Window.Resources>
+        <LinearGradientBrush x:Key="AccentBrush" StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Color="#FF2778BB" Offset="0"/>
+            <GradientStop Color="#FF1EDFFF" Offset="1"/>
+        </LinearGradientBrush>
 
-    <Grid  Background="Transparent" >
-        <Border CornerRadius="7" Opacity="0" Name="box" Margin="0,20,0,0"     Background="#FF2778BB" >
+        <!-- Primary (OK / Yes): accent gradient, white text -->
+        <Style x:Key="DialogPrimary" TargetType="Button">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="13.5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="b" CornerRadius="9" Background="{StaticResource AccentBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="b" Property="Opacity" Value="0.9"/></Trigger>
+                            <Trigger Property="IsPressed" Value="True"><Setter TargetName="b" Property="Opacity" Value="0.8"/></Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Secondary (No): subtle grey -->
+        <Style x:Key="DialogSecondary" TargetType="Button">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Foreground" Value="#FF44566B"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="13.5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="b" CornerRadius="9" Background="#FFEFF2F6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="b" Property="Background" Value="#FFE1E7EE"/></Trigger>
+                            <Trigger Property="IsPressed" Value="True"><Setter TargetName="b" Property="Background" Value="#FFD3DBE4"/></Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <!-- Outer margin leaves room for the card's drop shadow -->
+    <Grid Background="Transparent" Margin="18">
+        <Border x:Name="box" CornerRadius="16" Background="White" Opacity="0">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" ShadowDepth="0" Opacity="0.34" Color="#FF0B2238"/>
+            </Border.Effect>
             <Grid>
-                <TextBlock Margin="5 2" Opacity="0" Name="Titlelbl" Text="fdsfsdf"  FontSize="15"  FontWeight="DemiBold"  Foreground="White"  ></TextBlock>
-                <Border CornerRadius="7" Margin="1,25,1,1"   Background="White" >
-                    <Grid  Margin="10"  >
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="auto"/>
-                        </Grid.RowDefinitions>
-                        <materialDesign:PackIcon  Opacity="0" Foreground="White" Name="IconText" VerticalAlignment="Center" HorizontalAlignment="Center" Width="50" Height="50" Margin="0 0 0 0" />
-                        <!--<ScrollViewer VerticalAlignment="Center" Grid.Row="1" VerticalScrollBarVisibility="Auto" >
-                            <TextBlock  Grid.Row="1" Name="Messagelbl"  FontSize="15" Foreground="#333" FontWeight="DemiBold" VerticalAlignment="Center"  Margin="0,10,0,0" HorizontalAlignment="Center"  TextWrapping="Wrap" TextAlignment="Center" />
-                        </ScrollViewer>-->
-                        <TextBlock  Grid.Row="1" Name="Messagelbl" FontSize="15" Foreground="#333" FontWeight="DemiBold" VerticalAlignment="Center"  Margin="0,10,0,0" HorizontalAlignment="Center"  TextWrapping="Wrap" TextAlignment="Center" />
-                        <Grid  Grid.Row="2" VerticalAlignment="Top">
-                            <Button  Name="MessageAction" Visibility="Collapsed" Content="OK" HorizontalAlignment="Right" Click="closeWindow_MouseUp" VerticalAlignment="Bottom"  />
-                            <Grid Name="ChoiceAction" Visibility="Collapsed" Margin="10" VerticalAlignment="Bottom" >
-                                <Button Content="Yes" Name="yes" FontWeight="Bold" Foreground="{StaticResource PrimaryHueDarkBrush}" Click="yes_Click" HorizontalAlignment="Right" />
-                                <Button Content="No" Name="no" FontWeight="Bold" Foreground="{StaticResource PrimaryHueDarkBrush}" Click="no_Click"  HorizontalAlignment="Left" />
-                            </Grid>
-                        </Grid>
-                    </Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Severity icon (Kind + Foreground set in code) -->
+                <Border Grid.Row="0" Width="66" Height="66" CornerRadius="33" Margin="0,26,0,0"
+                        HorizontalAlignment="Center" Background="#FFF1F5F9">
+                    <materialDesign:PackIcon x:Name="IconText" Width="40" Height="40" Opacity="0"
+                                             HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
+
+                <!-- Title + message -->
+                <StackPanel Grid.Row="1" Margin="26,16,26,8" VerticalAlignment="Center">
+                    <TextBlock x:Name="Titlelbl" Opacity="0" HorizontalAlignment="Center" TextAlignment="Center"
+                               FontSize="17" FontWeight="Bold" Foreground="#FF1B2A3A"/>
+                    <TextBlock x:Name="Messagelbl" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap"
+                               FontSize="13" Foreground="#FF6B7B8C" Margin="0,9,0,0"/>
+                </StackPanel>
+
+                <!-- Actions -->
+                <Grid Grid.Row="2" Margin="26,10,26,24">
+                    <Button x:Name="MessageAction" Visibility="Collapsed" Content="OK"
+                            Click="closeWindow_MouseUp" Style="{StaticResource DialogPrimary}"/>
+                    <Grid x:Name="ChoiceAction" Visibility="Collapsed">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="12"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="no" Grid.Column="0" Content="No" Click="no_Click" Style="{StaticResource DialogSecondary}"/>
+                        <Button x:Name="yes" Grid.Column="2" Content="Yes" Click="yes_Click" Style="{StaticResource DialogPrimary}"/>
+                    </Grid>
+                </Grid>
             </Grid>
         </Border>
-
-
-
-
-
     </Grid>
 </Window>

@@ -39,6 +39,9 @@ Public Class MainViewModel
 #Region "Properties"
     'to hide the overlay after opening a window
     Public Property EnableDisable As Boolean = 0
+    'reaching MainView means the user is authenticated; drives the nav/logout visibility
+    Public Property IsLogedIn As Boolean = True
+    Public Property UserName As String = If(String.IsNullOrEmpty(LoginInfo.FullUserName), "Administrator", LoginInfo.FullUserName)
 #End Region
 #Region "Functions"
 
@@ -66,6 +69,14 @@ Public Class MainViewModel
     End Sub
 #End Region
 #Region "Commands"
+    Public Property HomeViewCommand As RelayCommand = New RelayCommand(Sub()
+                                                                           Try
+                                                                               AddView(NameOf(HomeView))
+                                                                               EnableDisable = False
+                                                                           Catch ex As Exception
+                                                                               MessageBox.Show(ex.Message, MessageBoxButton.OK, MessageBoxImage.Information)
+                                                                           End Try
+                                                                       End Sub)
     Public Property CloseTab As RelayCommand = New RelayCommand(Sub(Tab)
                                                                     Try
                                                                         If TypeOf Tab Is HomeView Then
